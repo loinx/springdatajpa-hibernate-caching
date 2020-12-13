@@ -1,0 +1,36 @@
+### Server information
+server:
+  port: 8080
+### Spring Properties
+spring:
+  application:
+    name: Spring Data JPA with Hibernate
+  cache:
+    type: redis
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+
+  ### Spring datasource Properties
+  datasource:
+    url: jdbc:postgresql://192.168.56.68:5432/postgres
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver 
+
+  jpa:
+    generate-ddl: true
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+        ddl-auto: create-drop
+        show_sql: true
+        cache:
+          use_query_cache: true
+          use_second_level_cache: true
+          factory_class: org.redisson.hibernate.RedissonRegionFactory
+          region_prefix: app_name
+          redisson:
+            fallback: true
+            config: redisson-dev.yaml
